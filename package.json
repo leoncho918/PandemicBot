@@ -1,0 +1,14 @@
+{
+  "name": "pandemic-bot",
+  "version": "1.0.0",
+  "description": "A bot to easily retrieve the statistics for pandemics",
+  "main": "bot.js",
+  "author": "Leon Cho",
+  "dependencies": {
+    "country-emoji": "^1.5.3",
+    "discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6",
+    "natural": "^0.6.3",
+    "request": "^2.88.2",
+    "winston": "^3.2.1"
+  }
+}
