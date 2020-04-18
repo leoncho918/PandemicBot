@@ -35,7 +35,7 @@ function getCountryStats(country) {
           JSON.parse(body).countrydata !== undefined
         ) {
           resolve(JSON.parse(body).countrydata[0]);
-        } else return error;
+        } else resolve(JSON.parse(error));
       }
     );
   });

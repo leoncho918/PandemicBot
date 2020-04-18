@@ -23,7 +23,6 @@ bot.on("ready", function (evt) {
 
 bot.on("message", function (user, userID, channelID, message, evt) {
   let args = [];
-  console.log(channelID);
   if (message.includes(" ")) {
     args.push(message.substr(0, message.indexOf(" ")));
     args.push(message.substr(message.indexOf(" ") + 1));
@@ -53,28 +52,35 @@ bot.on("message", function (user, userID, channelID, message, evt) {
         });
     } else if (args.length === 2 && typeof args[1] === "string") {
       coronavirus.country(args[1]).then((res) => {
-        const keys = Object.keys(res);
-        console.log(res);
-        let message = "";
-        message =
-          message +
-          `__**COVID-19 Statistics for ${
-            res.info.title === "Korea" ? "North Korea" : res.info.title
-          } ${flag(
-            res.info.title === "Korea" ? "North Korea" : res.info.title
-          )}**__\n`;
-        for (let i = 1; i < keys.length; i++) {
+        if (res === null) {
+          sendMessage(
+            channelID,
+            `I cannot find a country called "${args[1]}", please use another country name.`
+          );
+        } else {
+          const keys = Object.keys(res);
+
+          let message = "";
           message =
             message +
-            `**${capitaliseString(
-              keys[i].replace(new RegExp("_", "g"), " ")
-            )}:** ${parseNumber(res[keys[i]])}\n`;
+            `__**COVID-19 Statistics for ${
+              res.info.title === "Korea" ? "North Korea" : res.info.title
+            } ${flag(
+              res.info.title === "Korea" ? "North Korea" : res.info.title
+            )}**__\n`;
+          for (let i = 1; i < keys.length; i++) {
+            message =
+              message +
+              `**${capitaliseString(
+                keys[i].replace(new RegExp("_", "g"), " ")
+              )}:** ${parseNumber(res[keys[i]])}\n`;
+          }
+          if (unreliableCountry(res.info.title)) {
+            message =
+              message + "*This country's statistics may not be accurate.*";
+          }
+          sendMessage(channelID, message);
         }
-        if (unreliableCountry(res.info.title)) {
-          message =
-            message + "*This country's statistics may not be accurate.*";
-        }
-        sendMessage(channelID, message);
       });
     }
   }
