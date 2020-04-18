@@ -38,7 +38,7 @@ bot.on("message", function (user, userID, channelID, message, evt) {
         .then((res) => {
           const keys = Object.keys(res);
           let message = "";
-          message = message + "__**Covid-19 Statistics Worldwide 🌏**__\n";
+          message = message + "__**COVID-19 Statistics Worldwide 🌏**__\n";
           for (let i = 0; i < keys.length - 1; i++) {
             message =
               message +
@@ -58,7 +58,7 @@ bot.on("message", function (user, userID, channelID, message, evt) {
         let message = "";
         message =
           message +
-          `__**Covid-19 Statistics for ${
+          `__**COVID-19 Statistics for ${
             res.info.title === "Korea" ? "North Korea" : res.info.title
           } ${flag(
             res.info.title === "Korea" ? "North Korea" : res.info.title
