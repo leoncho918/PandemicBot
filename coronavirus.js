@@ -5,7 +5,7 @@ const { flag, code, name, countries } = require("country-emoji");
 function check(message) {
   const names = ["covid19", "coronavirus", "cars", "ccpvirus"];
   for (var i = 0; i < names.length; i++) {
-    if (natural.JaroWinklerDistance(names[i], message) > 0.75) return true;
+    if (natural.JaroWinklerDistance(names[i], message) > 0.9) return true;
   }
   return false;
 }
