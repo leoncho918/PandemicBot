@@ -19,6 +19,7 @@ bot.on("ready", function (evt) {
   logger.info("Connected");
   logger.info("Logged in as: ");
   logger.info(bot.username + " - (" + bot.id + ")");
+  bot.setPresence({ game: { name: "coronavirus [country]" } });
 });
 
 bot.on("message", function (user, userID, channelID, message, evt) {
